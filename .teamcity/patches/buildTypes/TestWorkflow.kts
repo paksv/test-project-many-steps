@@ -2,6 +2,7 @@ package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.schedule
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.ui.*
 
@@ -22,6 +23,15 @@ changeBuildType(RelativeId("TestWorkflow")) {
                     +:master
                     +:pull/*
                 """.trimIndent()
+            }
+        }
+        add {
+            schedule {
+                schedulingPolicy = cron {
+                    minutes = "*/30"
+                }
+                triggerBuild = always()
+                withPendingChangesOnly = false
             }
         }
     }
