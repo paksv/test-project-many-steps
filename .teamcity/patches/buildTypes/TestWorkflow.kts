@@ -30,5 +30,15 @@ changeBuildType(RelativeId("TestWorkflow")) {
             }
         }
 
+        expect(RelativeId("Lint")) {
+            snapshot {
+            }
+        }
+        update(RelativeId("Lint")) {
+            snapshot {
+                runOnSameAgent = true
+            }
+        }
+
     }
 }
