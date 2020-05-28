@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.VcsTrigger
+import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.ui.*
 
 /*
@@ -9,6 +11,21 @@ To apply the patch, change the buildType with id = 'TestWorkflow'
 accordingly, and delete the patch script.
 */
 changeBuildType(RelativeId("TestWorkflow")) {
+    triggers {
+        remove {
+            vcs {
+                quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
+                triggerRules = "-:.teamcity/**"
+                branchFilter = """
+                    +:<default>
+                    +:next
+                    +:master
+                    +:pull/*
+                """.trimIndent()
+            }
+        }
+    }
+
     dependencies {
         expect(RelativeId("E2E")) {
             snapshot {
