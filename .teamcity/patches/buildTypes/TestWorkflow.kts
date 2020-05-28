@@ -37,16 +37,6 @@ changeBuildType(RelativeId("TestWorkflow")) {
     }
 
     dependencies {
-        expect(RelativeId("Lint")) {
-            snapshot {
-            }
-        }
-        update(RelativeId("Lint")) {
-            snapshot {
-                runOnSameAgent = true
-            }
-        }
-
         expect(RelativeId("Coverage")) {
             snapshot {
             }
