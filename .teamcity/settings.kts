@@ -600,15 +600,12 @@ object TestWorkflow : BuildType({
     }
 
     triggers {
-        vcs {
-            quietPeriodMode = VcsTrigger.QuietPeriodMode.USE_DEFAULT
-            triggerRules = "-:.teamcity/**"
-            branchFilter = """
-                +:<default>
-                +:next
-                +:master
-                +:pull/*
-            """.trimIndent()
+        schedule {
+            schedulingPolicy = cron {
+                minutes = "*/30"
+            }
+            triggerBuild = always()
+            withPendingChangesOnly = false
         }
     }
 })
