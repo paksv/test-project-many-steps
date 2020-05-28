@@ -20,5 +20,15 @@ changeBuildType(RelativeId("TestWorkflow")) {
             }
         }
 
+        expect(RelativeId("SmokeTests")) {
+            snapshot {
+            }
+        }
+        update(RelativeId("SmokeTests")) {
+            snapshot {
+                runOnSameAgent = true
+            }
+        }
+
     }
 }
