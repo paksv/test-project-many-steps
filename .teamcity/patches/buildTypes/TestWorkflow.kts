@@ -35,17 +35,4 @@ changeBuildType(RelativeId("TestWorkflow")) {
             }
         }
     }
-
-    dependencies {
-        expect(RelativeId("Coverage")) {
-            snapshot {
-            }
-        }
-        update(RelativeId("Coverage")) {
-            snapshot {
-                runOnSameAgent = true
-            }
-        }
-
-    }
 }
