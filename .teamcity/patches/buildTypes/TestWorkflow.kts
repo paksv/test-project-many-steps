@@ -37,16 +37,6 @@ changeBuildType(RelativeId("TestWorkflow")) {
     }
 
     dependencies {
-        expect(RelativeId("E2E")) {
-            snapshot {
-            }
-        }
-        update(RelativeId("E2E")) {
-            snapshot {
-                runOnSameAgent = true
-            }
-        }
-
         expect(RelativeId("SmokeTests")) {
             snapshot {
             }
