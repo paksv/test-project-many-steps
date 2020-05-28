@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.schedule
 
@@ -39,6 +40,17 @@ object Long_1 : BuildType({
     steps {
         script {
             scriptContent = "sleep 2000"
+        }
+    }
+
+    features {
+        commitStatusPublisher {
+            publisher = github {
+                githubUrl = "https://api.github.com"
+                authType = personalToken {
+                    token = "credentialsJSON:809f8d7b-b1f6-4ed0-a245-b82b7d1da258"
+                }
+            }
         }
     }
 
